@@ -18,14 +18,14 @@ public class RayTracer {
 
         // Define the spheres in the scene
         Sphere[] spheres = {
-            new Sphere(new Vector3(0, -1, 3), 1, Color.RED),    // Red sphere in the center
-            new Sphere(new Vector3(2, 0, 4), 1, Color.BLUE),    // Blue sphere to the right
-            new Sphere(new Vector3(-2, 0, 4), 1, Color.GREEN),   // Green sphere to the left
-            new Sphere(new Vector3(0, -5001, 0), 5000, Color.YELLOW) // Large yellow sphere (acts as a floor)
+            new Sphere(new Vector3(0, -1, 3), 1, Color.RED, 500),    // Red sphere in the center
+            new Sphere(new Vector3(2, 0, 4), 1, Color.BLUE, 500),    // Blue sphere to the right
+            new Sphere(new Vector3(-2, 0, 4), 1, Color.GREEN, 10),   // Green sphere to the left
+            new Sphere(new Vector3(0, -5001, 0), 5000, Color.YELLOW, 1000) // Large yellow sphere (acts as a floor)
         };
 
         Light[] lights = {
-            new Light(new Vector3(-2, 1, 0), 0.6),                      // Point light
+            new Light(new Vector3(2, 1, 0), 0.6),                      // Point light
             new Light(new Vector3(1, 4, 4), 0.2, Light.LightType.DIRECTIONAL), // Directional light
             new Light(0.2, Light.LightType.AMBIENT)                      // Ambient light
         };
@@ -53,7 +53,7 @@ public class RayTracer {
 
         // Save the rendered image to a file
         try {
-            ImageIO.write(image, "png", new File("result.png"));
+            ImageIO.write(image, "png", new File("result with specular ref.png"));
             System.out.println("Saved as result.png");
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class RayTracer {
 
     }
 
-    static double computeLighting(Vector3 point, Vector3 normal, Light[] lights) {
+    static double computeLighting(Vector3 point, Vector3 normal, Light[] lights, double specular, Vector3 viewDir) {
         double intensity = 0.0;
     
         for (Light light : lights) {
@@ -82,6 +82,18 @@ public class RayTracer {
                 double nDotL = normal.dot(lightDir);
                 if (nDotL > 0) {
                     intensity += light.intensity * nDotL;
+                }
+
+                // Compute specular reflection
+                if (specular != -1) {
+                    Vector3 reflectDir = normal.multiply(2 * nDotL).subtract(lightDir).normalize();
+                    double rDotV = reflectDir.dot(viewDir);
+
+                    if (rDotV > 0) {
+                        intensity += light.intensity * Math.pow(rDotV, specular);
+                        
+                    }
+                    
                 }
                 
             }
@@ -114,8 +126,10 @@ public class RayTracer {
         Vector3 intersection = origin.add(direction.multiply(minT));
         Vector3 normal = intersection.subtract(closestSphere.center).normalize();
         
+
         // Compute lighting
-        double intensity = computeLighting(intersection, normal, lights);
+        Vector3 viewDir = direction.multiply(-1).normalize();
+        double intensity = computeLighting(intersection, normal, lights, closestSphere.specular, viewDir);
 
         // Apply lighting to the sphere's color
         int r = (int) (closestSphere.color.getRed() * intensity);
