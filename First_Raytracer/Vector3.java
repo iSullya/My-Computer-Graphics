@@ -1,3 +1,5 @@
+package First_Raytracer;
+
 public class Vector3 {
     double x, y, z;
 
@@ -34,7 +36,7 @@ public class Vector3 {
     }
 
     
-    Vector3 normalize() {
+    public Vector3 normalize() {
         double len = length();
         return new Vector3(x / len, y / len, z / len);
     }
