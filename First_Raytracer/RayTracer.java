@@ -53,7 +53,7 @@ public class RayTracer {
 
         // Save the rendered image to a file
         try {
-            ImageIO.write(image, "png", new File("result with specular ref.png"));
+            ImageIO.write(image, "png", new File("result with shadows.png"));
             System.out.println("Saved as result.png");
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class RayTracer {
 
     }
 
-    static double computeLighting(Vector3 point, Vector3 normal, Light[] lights, double specular, Vector3 viewDir) {
+    static double computeLighting(Vector3 point, Vector3 normal, Light[] lights, double specular, Vector3 viewDir, Sphere[] spheres) {
         double intensity = 0.0;
     
         for (Light light : lights) {
@@ -70,12 +70,22 @@ public class RayTracer {
                 intensity += light.intensity;
             } else {
                 Vector3 lightDir;
+                double tMax;
                 if (light.type == Light.LightType.POINT) {
                     // Compute direction from point to light
                     lightDir = light.position.subtract(point).normalize();
+                    tMax = 1;       // for Point Lights ray stops at high t
                 } else { // DIRECTIONAL
                     // Use the fixed direction of the light
                     lightDir = light.direction;
+                    tMax = Double.MAX_VALUE;        // for Directional light ray goes to ∞
+                }
+
+                // Check for shadows:
+                IntersectionResult shadowResult = closestIntersection(point, lightDir, 0.001, tMax, spheres);
+                if (shadowResult.sphere != null) {  // Check if a point is in shadow
+                    continue;
+                    
                 }
     
                 // Compute diffuse reflection
@@ -95,6 +105,7 @@ public class RayTracer {
                     }
                     
                 }
+
                 
             }
             
@@ -103,38 +114,43 @@ public class RayTracer {
         return intensity;
     }
 
-
-    static Color traceRay(Vector3 origin, Vector3 direction, Sphere[] spheres, Light[] lights) {
+    static IntersectionResult closestIntersection(Vector3 origin, Vector3 direction, double tMin, double tMax, Sphere[] spheres){
         Sphere closestSphere = null;
-        double minT = Double.MAX_VALUE;
+        double closestT = Double.MAX_VALUE;
 
-        // Check for intersection with each sphere
-        for (Sphere sphere : spheres) {
+        for (Sphere sphere : spheres){
             Double t = sphere.intersect(origin, direction);
-
-            // Update the closest intersection
-            if (t != null && t < minT) {
-                minT = t;
+            if (t != null && t >= tMin && t <= tMax && t < closestT){
+                closestT = t;
                 closestSphere = sphere;
             }
         }
+        return new IntersectionResult(closestSphere, closestT);
+    }
 
 
-        if (closestSphere == null) return Color.WHITE;
+    static Color traceRay(Vector3 origin, Vector3 direction, Sphere[] spheres, Light[] lights) {
+        
+        IntersectionResult result = closestIntersection(origin, direction, 1, Double.MAX_VALUE, spheres);
+
+        if (result.sphere == null) {
+            return Color.WHITE;
+            
+        }
 
         // Compute intersection point and normal
-        Vector3 intersection = origin.add(direction.multiply(minT));
-        Vector3 normal = intersection.subtract(closestSphere.center).normalize();
+        Vector3 intersection = origin.add(direction.multiply(result.t));
+        Vector3 normal = intersection.subtract(result.sphere.center).normalize();
         
 
         // Compute lighting
         Vector3 viewDir = direction.multiply(-1).normalize();
-        double intensity = computeLighting(intersection, normal, lights, closestSphere.specular, viewDir);
+        double intensity = computeLighting(intersection, normal, lights, result.sphere.specular, viewDir, spheres);
 
         // Apply lighting to the sphere's color
-        int r = (int) (closestSphere.color.getRed() * intensity);
-        int g = (int) (closestSphere.color.getGreen() * intensity);
-        int b = (int) (closestSphere.color.getBlue() * intensity);
+        int r = (int) (result.sphere.color.getRed() * intensity);
+        int g = (int) (result.sphere.color.getGreen() * intensity);
+        int b = (int) (result.sphere.color.getBlue() * intensity);
 
         // Clamp the color values to the range [0, 255]
         r = Math.min(255, Math.max(0, r));
@@ -143,4 +159,6 @@ public class RayTracer {
 
         return new Color(r, g, b);
     }
+
+    
 }
