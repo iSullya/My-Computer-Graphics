@@ -10,13 +10,15 @@ public class Sphere {
     double radius;   // Radius of the sphere
     Color color;     // Color of the sphere
     double specular; // shininess factor
+    double reflective; // reflection factor
 
     // Constructor to initialize the sphere
-    Sphere(Vector3 center, double radius, Color color, double specular) {
+    Sphere(Vector3 center, double radius, Color color, double specular, double reflective) {
         this.center = center;
         this.radius = radius;
         this.color = color;
         this.specular = specular;
+        this.reflective = reflective;
     }
 
     /**

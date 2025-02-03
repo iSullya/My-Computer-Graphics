@@ -74,6 +74,6 @@ public class Vector3 {
 
     Vector3 reflect(Vector3 normal){
         double dot = this.dot(normal);
-        return normal.multiply(2*dot).subtract(this);
+        return this.subtract(normal.multiply(2 * dot));
     }
 }

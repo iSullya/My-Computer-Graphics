@@ -18,10 +18,10 @@ public class RayTracer {
 
         // Define the spheres in the scene
         Sphere[] spheres = {
-            new Sphere(new Vector3(0, -1, 3), 1, Color.RED, 500),    // Red sphere in the center
-            new Sphere(new Vector3(2, 0, 4), 1, Color.BLUE, 500),    // Blue sphere to the right
-            new Sphere(new Vector3(-2, 0, 4), 1, Color.GREEN, 10),   // Green sphere to the left
-            new Sphere(new Vector3(0, -5001, 0), 5000, Color.YELLOW, 1000)  // Yellow sphere that kinda represent a floor  
+            new Sphere(new Vector3(0, -1, 3), 1, Color.RED, 500, 0.2),    // Red sphere in the center
+            new Sphere(new Vector3(2, 0, 4), 1, Color.BLUE, 500, 0.3),    // Blue sphere to the right
+            new Sphere(new Vector3(-2, 0, 4), 1, Color.GREEN, 10, 0.4),   // Green sphere to the left
+            new Sphere(new Vector3(0, -5001, 0), 5000, Color.YELLOW, 1000, 0.5)  // Yellow sphere that kinda represent a floor  
         };
 
         Light[] lights = {
@@ -44,7 +44,7 @@ public class RayTracer {
                 Vector3 direction = new Vector3(px, py, 1).normalize();
 
                 // Trace the ray to find the color at this pixel
-                Color color = traceRay(camera, direction, spheres, lights);
+                Color color = traceRay(camera, direction, spheres, lights, 3);
 
                 // Set the pixel color in the image
                 image.setRGB(x, y, color.getRGB());
@@ -75,6 +75,7 @@ public class RayTracer {
                 if (light.type == Light.LightType.POINT) {
                     // Compute direction from point to light
                     lightDir = light.position.subtract(point).normalize();
+                    // lightDir = light.direction.multiply(-1).normalize();
                     tMax = light.position.subtract(point).length();
 
                 } else { // DIRECTIONAL
@@ -115,14 +116,17 @@ public class RayTracer {
         return intensity;
     }
 
-    static Color traceRay(Vector3 origin, Vector3 direction, Sphere[] spheres, Light[] lights) {
-
+    static Color traceRay(Vector3 origin, Vector3 direction, Sphere[] spheres, Light[] lights, int recursionDepth) {
+        // base case: stop after 3 boumces 
+        if (recursionDepth <= 0) {
+            return Color.BLACK;  // zero light contribution
+        }
         Object[] intersectionData = closestIntersection(origin, direction, spheres, 1e-3, Double.MAX_VALUE);
 
         Sphere closestSphere = (Sphere) intersectionData[0];
         double closestT = (double) intersectionData[1];
 
-        if (closestSphere == null) return Color.WHITE;
+        if (closestSphere == null) return Color.BLACK;  //bakckground
 
         // Compute intersection point and normal
         Vector3 intersection = origin.add(direction.multiply(closestT));
@@ -134,17 +138,45 @@ public class RayTracer {
         // Compute lighting
         double intensity = computeLighting(intersection, normal, lights, spheres, closestSphere.specular, viewDir);
 
-        // Apply lighting to the sphere's color
-        int r = (int) (closestSphere.color.getRed() * intensity);
-        int g = (int) (closestSphere.color.getGreen() * intensity);
-        int b = (int) (closestSphere.color.getBlue() * intensity);
+        Color localColor = multiplyColor(closestSphere.color, intensity);
 
-        // Clamp the color values to the range [0, 255]
-        r = Math.min(255, Math.max(0, r));
-        g = Math.min(255, Math.max(0, g));
-        b = Math.min(255, Math.max(0, b));
+        // check if sphere is not reflective
+        if (closestSphere.reflective <= 0) {
+            return localColor;
+        }
+        
+        // compute reflection direction
+        Vector3 reflectDir = direction.reflect(normal).normalize();
+        // 1e-3 to avoid self intersection
+        Vector3 reflectedRayOriging = intersection.add(normal.multiply(1e-3)); 
+        // recursivly trace reflected ray
+        Color reflectedColor = traceRay(reflectedRayOriging, reflectDir, spheres, lights, recursionDepth -1);
 
-        return new Color(r, g, b);
+        // blend local color (og) and reflected one
+        return blendColors(localColor, closestSphere.reflective, reflectedColor);
+    }
+
+    static Color multiplyColor(Color color, double intensity){
+        int r = (int) (color.getRed() * intensity);
+        int g = (int) (color.getGreen() * intensity);
+        int b = (int) (color.getBlue() * intensity);
+        return new Color(
+            Math.min(255, Math.max(0, r)),
+            Math.min(255, Math.max(0, g)),
+            Math.min(255, Math.max(0, b))
+        );
+    }
+
+    static Color blendColors(Color locaColor, double reflectivity, Color reflectedColor){
+        double r = locaColor.getRed() * (1 - reflectivity) + reflectedColor.getRed() * reflectivity;
+        double g = locaColor.getGreen() * (1 - reflectivity) + reflectedColor.getGreen() * reflectivity;
+        double b = locaColor.getBlue() * (1 - reflectivity) + reflectedColor.getBlue() * reflectivity;
+
+        return new Color(
+            (int) Math.min(255, Math.max(0, r)),
+            (int) Math.min(255, Math.max(0, g)),
+            (int) Math.min(255, Math.max(0, b))
+        );
     }
 
     static Object[] closestIntersection(Vector3 origin, Vector3 direction, Sphere[] spheres,
