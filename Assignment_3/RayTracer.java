@@ -62,22 +62,18 @@ public class RayTracer {
 
     static double computeLighting(Vector3 point, Vector3 normal, Light[] lights, Sphere[] spheres, double specular, Vector3 viewDir) {
         double intensity = 0.0;
-        double epsilon = 1e-3; // offset to avoid self-intersection
+        double epsilon = 0.001; // offset to avoid self-intersection
 
         for (Light light : lights) {
             if (light.type == Light.LightType.AMBIENT) {
-                // Ambient light contributes equally to all points
                 intensity += light.intensity;
             } else {
                 Vector3 lightDir;
                 double tMax;
 
                 if (light.type == Light.LightType.POINT) {
-                    // Compute direction from point to light
                     lightDir = light.position.subtract(point).normalize();
-                    // lightDir = light.direction.multiply(-1).normalize();
                     tMax = light.position.subtract(point).length();
-
                 } else { // DIRECTIONAL
                     // Use the fixed direction of the light (pointing from the light source)
                     lightDir = light.direction;
@@ -118,10 +114,10 @@ public class RayTracer {
 
     static Color traceRay(Vector3 origin, Vector3 direction, Sphere[] spheres, Light[] lights, int recursionDepth) {
         // base case: stop after 3 boumces 
-        if (recursionDepth <= 0) {
-            return Color.BLACK;  // zero light contribution
-        }
-        Object[] intersectionData = closestIntersection(origin, direction, spheres, 1e-3, Double.MAX_VALUE);
+        // if (recursionDepth <= 0) {
+        //     return Color.BLACK;  // zero light contribution
+        // }
+        Object[] intersectionData = closestIntersection(origin, direction, spheres, 0.001, Double.MAX_VALUE);
 
         Sphere closestSphere = (Sphere) intersectionData[0];
         double closestT = (double) intersectionData[1];
@@ -141,14 +137,14 @@ public class RayTracer {
         Color localColor = multiplyColor(closestSphere.color, intensity);
 
         // check if sphere is not reflective
-        if (closestSphere.reflective <= 0) {
+        if (closestSphere.reflective <= 0 || recursionDepth <= 0) {
             return localColor;
         }
         
         // compute reflection direction
         Vector3 reflectDir = direction.reflect(normal).normalize();
         // 1e-3 to avoid self intersection
-        Vector3 reflectedRayOriging = intersection.add(normal.multiply(1e-3)); 
+        Vector3 reflectedRayOriging = intersection.add(normal.multiply(0.001)); 
         // recursivly trace reflected ray
         Color reflectedColor = traceRay(reflectedRayOriging, reflectDir, spheres, lights, recursionDepth -1);
 
