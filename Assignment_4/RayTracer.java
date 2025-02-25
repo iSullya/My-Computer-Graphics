@@ -45,7 +45,7 @@ public class RayTracer {
 
         // Save the rendered image to a file
         try {
-            ImageIO.write(image, "png", new File("Assignment_4/Results/Assignment_4_result_whiteBackground.png"));
+            ImageIO.write(image, "png", new File("Assignment_4/Results/Assignment_4_result.png"));
             System.out.println("Saved as result_with_specular_ref.png");
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +147,7 @@ public class RayTracer {
         Sphere closestSphere = (Sphere) intersectionData[0];
         double closestT = (double) intersectionData[1];
 
-        if (closestSphere == null) return Color.WHITE;  //bakckground
+        if (closestSphere == null) return Color.BLACK;  //bakckground
 
         // Compute intersection point and normal
         Vector3 intersection = origin.add(direction.multiply(closestT));

@@ -13,6 +13,9 @@ import javax.imageio.ImageIO;
 
 public class RayTracer {
     public static void main(String[] args) {
+
+        // Start timer
+        long startTime = System.nanoTime();
         // image dimensions
         int width = 1200, height = 675;
         
@@ -126,11 +129,20 @@ public class RayTracer {
 
         // Save the rendered image to a file
         try {
-            ImageIO.write(image, "png", new File("Project_1/Results/Assignment_6_result.png"));
+            ImageIO.write(image, "png", new File("Project_1/Results/Project_1_result.png"));
             System.out.println("Saved as result_with_specular_ref.png");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // End timer
+        long endTime = System.nanoTime();
+
+        // Calculate execution time in seconds
+        double executionTime = (endTime - startTime) / 1e9; 
+
+        // Print execution time
+        System.out.println("Execution Time: " + executionTime + " seconds");
     }
 
     public static Color superSampling(int x, int y, int width, int height, int samples, Camera camera, Sphere[] spheres, Light[] lights) {

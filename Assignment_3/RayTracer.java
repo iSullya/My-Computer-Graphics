@@ -84,7 +84,7 @@ public class RayTracer {
                 Vector3 shadowRayOrigin = point.add(normal.multiply(epsilon));
                 Object[] shadowData = closestIntersection(shadowRayOrigin, lightDir, spheres, 0, tMax);
 
-                //check if the point is in the shadow |I AM THE SHADOW|
+                //check if the point is in the shadow |I AM THE SHADOWS|
                 if (shadowData[0] != null) continue; 
 
                 // Compute diffuse reflection
