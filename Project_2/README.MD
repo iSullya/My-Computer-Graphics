@@ -20,3 +20,12 @@ This is a simple GLSL fragment shader that implements basic ray tracing to rende
 - **Run the Shader:** Paste the code into a GLSL-compatible environment (e.g., ShaderToy or a WebGL setup). Or just paste this direct link to the project on shadertoy https://www.shadertoy.com/view/wcfSW7
 
 - **Uniforms:** Ensure you provide the necessary uniforms like `iResolution` for proper rendering.
+
+## Results and Observations
+
+- The attached results are for the different RAND_SEED that I've used, feel free to explore that.
+- For a 100 spheres, the average compilation time was around 55 seconds.
+- For a 80 spheres, the average compilation time was around 28 seconds.
+- For a 64 spheres, the average compilation time was around 14 seconds.
+- For a 50 spheres, the average compilation time was around 7 seconds.
+- To render only the main spheres -ground, the big three- it takes around 0.3 seconds.   
