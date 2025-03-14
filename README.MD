@@ -7,31 +7,31 @@ This repository contains assignments and projects completed as part of the **Com
 ## Contents
 
 ### Assignments
-1. **[Assignment 1: Basic 2D Transformations](Assignment_1/README.md)**  
-   Focuses on basic 2D transformations and rendering.
+1. **[Assignment 1](Assignment_1/README.MD)**  
+   Basic Ray Tracer with Spheres.
 
-2. **[Assignment 2: 3D Projections and Camera Movement](Assignment_2/README.md)**  
-   Covers 3D projections and camera movement.
+2. **[Assignment 2](Assignment_2/READMEMD)**  
+   Ray Tracer with Lighting and Specular Highlights.
 
-3. **[Assignment 3: Lighting and Shading Techniques](Assignment_3/README.md)**  
-   Implements lighting and shading techniques.
+3. **[Assignment 3](Assignment_3/README.MD)**  
+   Ray Tracer with Shadows and Reflectivity.
 
-4. **[Assignment 4: Texture Mapping and Material Properties](Assignment_4/README.md)**  
-   Explores texture mapping and material properties.
+4. **[Assignment 4](Assignment_4/README.MD)**  
+   Ray Tracer with Supersampling Anti-Aliasing.
 
 ### Projects
-1. **[Project 1: Ray Tracing](Project_1/README.md)**  
-   A ray tracing implementation showcasing reflections, refractions, and shadows.
+1. **[Project 1: Ray Tracing](Project_1/README.MD)**  
+   Advanced Ray Tracer with Camera, Materials, and Area Lighting.
 
-2. **[Project 2: Dynamic Animation with GLSL](Project_2/README.md)**  
-   A dynamic animation project utilizing GLSL for visual effects.
+2. **[Project 2: Ray Tracing Using Shaders](Project_2/README.MD)**  
+   GLSL Ray Tracing Shader.
 
 
 
 ## Languages Used
 
 - **Java:** 85.4%  
-  Used for implementing core ray tracing logic, transformations, and rendering pipelines.
+  Used for implementing core ray tracing logic and rendering pipelines in Assignment 1-4, and Project 1.
 
 - **GLSL:** 14.6%  
   Used for shader programming, lighting calculations, and visual effects in Project 2.
