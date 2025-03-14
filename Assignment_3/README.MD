@@ -12,3 +12,10 @@ note that result1-result3 are stages of reaching the final result, result_final
 to run the program on your machine all you need to do is pull this repo (or download it as a ZIP file), then run the main class RayTracer.java
 
 and the output image will be created in the root folder a.k.a Assignment_3 folder named "Assignment_3_result".
+
+results and findings:
+![rendering with shadows](Assignment_3_result1.png)
+
+![rendering with shadows, reflection -white background](Assignment_3_result2.png)
+
+![final result, with black background](Assignment_3_result_final.png)

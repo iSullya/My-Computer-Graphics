@@ -12,3 +12,8 @@ to run the program on your machine all you need to do is pull this repo (or down
 
 and the output image will be created in the root folder a.k.a Assignment_2 folder named "Assignment_2_result".
 
+result and findings:
+
+![rendering with lighting and no specular](Assignment_2_result1.png)
+
+![rendering with both lighting and specular](Assignment_2_result_final.png)

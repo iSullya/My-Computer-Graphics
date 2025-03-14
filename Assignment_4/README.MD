@@ -11,3 +11,9 @@ note that results are saved in the folder Result, each name reflect what is this
 to run the program on your machine all you need to do is pull this repo (or download it as a ZIP file), then run the main class RayTracer.java
 
 and the output image will be created in the root folder a.k.a Assignment_4/Result folder named "Assignment_4_result".
+
+results and findings:
+![factor 4 supersampling/black](Results/Assignment_4_result_4by4.png) 
+![factor 5 supersampling/black without jittering](Results/Assignment_4_result_5by5_woutJittering.png) 
+![factor 5 supersampling/black](Results/Assignment_4_result_5by5.png) 
+![factor 5 supersampling/white](Results/Assignment_4_result_whiteBackground.png) 
