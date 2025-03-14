@@ -1,6 +1,6 @@
 # My Computer Graphics
 
-This repository contains assignments and projects completed as part of the **Computer Graphics** course. The work is primarily implemented in **Java** and **GLSL**, covering a wide range of topics from basic 2D transformations to advanced ray tracing and dynamic animations.
+This repository contains assignments and projects completed as part of the **Computer Graphics** course. The work is primarily implemented in **Java** and **GLSL**, covering a wide range of topics from basic 2D rendering to advanced ray tracing.
 
 ---
 
