@@ -18,8 +18,11 @@ In this assignment, we added shadows and reflectivity to create a more realistic
 
 ## Results
 
+- Rendering with shadows
 ![Rendering with shadows](Assignment_3_result1.png)  
 
+- Rendering with shadows and reflection (white background)
 ![Rendering with shadows and reflection (white background)](Assignment_3_result2.png)  
 
+- Final result with black background
 ![Final result with black background](Assignment_3_result_final.png)

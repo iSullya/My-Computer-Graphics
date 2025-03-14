@@ -30,7 +30,14 @@ This is a simple GLSL fragment shader that implements basic ray tracing to rende
 - For a 50 spheres, the average compilation time was around 7 seconds.
 - To render only the main spheres -ground, the big three- it takes around 0.3 seconds.   
 
-![randomized result #1](Results/Poject_2_result1.png) 
+- Randomized result #1
+![randomized result #1](Results/Poject_2_result1.png)
+
+- Randomized result #2
 ![randomized result #2](Results/Poject_2_result2.png) 
+
+- Randomized result #3
 ![randomized result #3](Results/Poject_2_result3.png) 
+
+- Randomized result #4
 ![randomized result #4](Results/Poject_2_result4.png)
