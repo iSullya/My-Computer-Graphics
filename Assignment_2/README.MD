@@ -1,19 +1,22 @@
-In this assignment, we added more depth and reality to the scene, kind of from 2D to 3D scene using lightning,
-previously we relied on shooting a ray and returning the color of the object that it hits. However that will 
-return a plain image with no depth. In this assignment we introduced two features, Lighting and object specular (Shininess).
+# Ray Tracer with Lighting and Specular Highlights
 
-to deal with lighting -in a very simple words- we check if the ray hits an object that is exposed to light directly
-if so, then the returned color will be more intense, the less the object exposed to light, the less color intensity
-that pixel will have. For shininess, if the object's specular is high, then areas highly exposed to lighting will have even higher intensity.
+In this assignment, we added more depth and reality to the scene, moving from a 2D-like rendering to a 3D scene using lighting and object specularity (shininess).
 
-note that result1 is the rendering with lighting and no specular, and result_final is with both lighting and specular
+## Features
+- **Lighting:** We check if a ray hits an object that is directly exposed to light. If so, the returned color will be more intense. The less exposed the object is to light, the lower the color intensity of that pixel.
+- **Specular (Shininess):** If an object's specular value is high, areas highly exposed to lighting will have even higher intensity.
 
-to run the program on your machine all you need to do is pull this repo (or download it as a ZIP file), then run the main class RayTracer.java
+## Results
+- `result1.png`: Rendering with lighting but no specular.
+- `result_final.png`: Rendering with both lighting and specular.
 
-and the output image will be created in the root folder a.k.a Assignment_2 folder named "Assignment_2_result".
+## Usage
+1. Clone this repository or download it as a ZIP file.
+2. Run the main class `RayTracer.java`.
+3. The output images will be created in the root folder (i.e., the `Assignment_2` folder) and named `Assignment_2_result1.png` and `Assignment_2_result_final.png`.
 
-result and findings:
+## Results
 
-![rendering with lighting and no specular](Assignment_2_result1.png)
-
-![rendering with both lighting and specular](Assignment_2_result_final.png)
+![Rendering with lighting and no specular](Assignment_2_result1.png) 
+ 
+![Rendering with both lighting and specular](Assignment_2_result_final.png)

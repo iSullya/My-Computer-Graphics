@@ -1,21 +1,24 @@
-In this project, we combine all the concepts that were introduced in the past assignment, and many more.
+# Advanced Ray Tracer with Camera, Materials, and Area Lighting
 
-new features:
-- Camera class, this will handle our view point to the scene with more control instead of a static point of view.
-- MaterialType class, to give our opjects different looks and properties DIFFUSE, METAL, DIELECTRIC.
-- Ray class, instead of the old one that was inline within RayTracer class for more usability and readability.
-- Added a new lighing type Area lighting, which is close to point light but it is a rectangular shape and cover
-a larger area (based on its height, widht). [we used that as a simple, naive replacement for global illumination].
+In this project, we combine all the concepts introduced in previous assignments and add new features for a more advanced ray tracer.
 
+## New Features
+- **Camera Class:** Handles the viewpoint of the scene with more control instead of a static point of view.
+- **MaterialType Class:** Allows objects to have different looks and properties (DIFFUSE, METAL, DIELECTRIC).
+- **Ray Class:** Replaces the old inline ray implementation for better usability and readability.
+- **Area Lighting:** A rectangular light source that covers a larger area (based on its height and width), used as a simple replacement for global illumination.
 
-note that results are saved in the folder Results, result1 through result6 express the different development stages of this project,
-and the final results are labeled as final1, final2 for two different rendering. It should take an average of 6.5 minutes to render a full result. 
+## Results
+- The results are saved in the `Results` folder. `result1` through `result6` represent different development stages, and the final results are labeled as `final1` and `final2`.
+- Rendering a full result takes an average of 6.5 minutes.
 
-to run the program on your machine all you need to do is pull this repo (or download it as a ZIP file), then run the main class RayTracer.java
+## Usage
+1. Clone this repository or download it as a ZIP file.
+2. Run the main class `RayTracer.java`.
+3. The output images will be created in the `Project_1/Results` folder and named `Project_1_result_final1.png` and `Project_1_result_final2.png`.
 
-and the output image will be created in the root folder a.k.a Project_1/Results folder named "Project_1_result".
+## Results
 
-results and findings:
-![randomized result #1](Results/Project_1_result_final1.png) 
+![Randomized result #1](Results/Project_1_result_final1.png)  
 
-![randomized result #2](Results/Project_1_result_final2.png)
+![Randomized result #2](Results/Project_1_result_final2.png)

@@ -1,21 +1,25 @@
-In this assignment, we addded shadows and reflectivity for more realistic and rich image.
+# Ray Tracer with Shadows and Reflectivity
 
-First we added shadows, before we compute diffusion or shininess of a pixel is behind an object.
-If it is? then we skip those and the result is darker pixels imitating shadows.
+In this assignment, we added shadows and reflectivity to create a more realistic and rich image.
 
-Then we added reflectivity, which is an object property that mirror the view reflected on its surface from other objects.
-And how did we achieve that? we simply will shoot a ray perpendicular to the point that the original ray (the main one),
-then reflect what the sub-ray intersected with (more like a scene within a scene) and bounce this ray based on the recursionDepth.
+## Features
+- **Shadows:** Before computing diffusion or shininess, we check if a pixel is behind an object. If it is, we skip those computations, resulting in darker pixels that imitate shadows.
+- **Reflectivity:** This is an object property that mirrors the view reflected on its surface from other objects. We achieve this by shooting a ray perpendicular to the point where the original ray hits, reflecting what the sub-ray intersects with (like a scene within a scene). This ray bounces based on the `recursionDepth`.
 
-note that result1-result3 are stages of reaching the final result, result_final
+## Results
+- `result1.png`: Rendering with shadows.
+- `result2.png`: Rendering with shadows and reflection (white background).
+- `result_final.png`: Final result with a black background.
 
-to run the program on your machine all you need to do is pull this repo (or download it as a ZIP file), then run the main class RayTracer.java
+## Usage
+1. Clone this repository or download it as a ZIP file.
+2. Run the main class `RayTracer.java`.
+3. The output images will be created in the root folder (i.e., the `Assignment_3` folder) and named `Assignment_3_result1.png`, `Assignment_3_result2.png`, and `Assignment_3_result_final.png`.
 
-and the output image will be created in the root folder a.k.a Assignment_3 folder named "Assignment_3_result".
+## Results
 
-results and findings:
-![rendering with shadows](Assignment_3_result1.png)
+![Rendering with shadows](Assignment_3_result1.png)  
 
-![rendering with shadows, reflection -white background](Assignment_3_result2.png)
+![Rendering with shadows and reflection (white background)](Assignment_3_result2.png)  
 
-![final result, with black background](Assignment_3_result_final.png)
+![Final result with black background](Assignment_3_result_final.png)

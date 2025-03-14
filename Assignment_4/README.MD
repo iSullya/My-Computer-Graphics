@@ -1,19 +1,27 @@
-In this assignment, we introduced a new concept to the scene, which is Super Sampling.
+# Ray Tracer with Supersampling Anti-Aliasing
 
-super sampling is an anti-aliasing method, it makes the picture a lot more crisp and sharp
-however it degrade the performance. To simlpy put that, instead of shooting one ray for each pixel,
-we will shoot multiple ones based on the sampling factor. For instance, if we have a 600 by 600 pixel 
-rendering, and a sampling factor of 4 (4by4 rays for each pixel > 16 rays per pixel) there will be 
-a total of 5,760,000 rays instead of only 360,000.
+In this assignment, we introduced supersampling, an anti-aliasing method that makes the image more crisp and sharp. However, it degrades performance because instead of shooting one ray per pixel, we shoot multiple rays based on the sampling factor.
 
-note that results are saved in the folder Result, each name reflect what is this result for.
+## Features
+- **Supersampling:** For example, in a 600x600 pixel rendering with a sampling factor of 4 (4x4 rays per pixel, totaling 16 rays per pixel), there will be 5,760,000 rays instead of 360,000.
 
-to run the program on your machine all you need to do is pull this repo (or download it as a ZIP file), then run the main class RayTracer.java
+## Results
+- `Assignment_4_result_4by4.png`: Supersampling with a factor of 4 (black background).
+- `Assignment_4_result_5by5_woutJittering.png`: Supersampling with a factor of 5 (black background, no jittering).
+- `Assignment_4_result_5by5.png`: Supersampling with a factor of 5 (black background).
+- `Assignment_4_result_whiteBackground.png`: Supersampling with a factor of 5 (white background).
 
-and the output image will be created in the root folder a.k.a Assignment_4/Result folder named "Assignment_4_result".
+## Usage
+1. Clone this repository or download it as a ZIP file.
+2. Run the main class `RayTracer.java`.
+3. The output images will be created in the `Assignment_4/Result` folder.
 
-results and findings:
-![factor 4 supersampling/black](Results/Assignment_4_result_4by4.png) 
-![factor 5 supersampling/black without jittering](Results/Assignment_4_result_5by5_woutJittering.png) 
-![factor 5 supersampling/black](Results/Assignment_4_result_5by5.png) 
-![factor 5 supersampling/white](Results/Assignment_4_result_whiteBackground.png) 
+## Results
+
+![Factor 4 supersampling (black background)](Results/Assignment_4_result_4by4.png)  
+
+![Factor 5 supersampling (black background, no jittering)](Results/Assignment_4_result_5by5_woutJittering.png)  
+
+![Factor 5 supersampling (black background)](Results/Assignment_4_result_5by5.png)  
+
+![Factor 5 supersampling (white background)](Results/Assignment_4_result_whiteBackground.png)

@@ -1,12 +1,11 @@
-** This is week#1 required work. **
+# Basic Ray Tracer with Spheres
 
-A simple raytracer that represent three spheres with three different colors (Red, Green, Blue).
-It will shoot a ray at each pixel and check for intersection
-If it hits an object (a sphere in this case) it will color that pixel with the sphere's color,
-Otherwise paint it white (the background color)
+A simple ray tracer that represents three spheres with three different colors (Red, Green, Blue). It shoots a ray at each pixel and checks for intersection. If the ray hits a sphere, it colors the pixel with the sphere's color; otherwise, it paints the pixel white (the background color).
 
-to run the program on your machine all you need to do is pull this repo (or download it as a ZIP file), then run the main class RayTracer.java
+## Usage
+1. Clone this repository or download it as a ZIP file.
+2. Run the main class `RayTracer.java`.
+3. The output image will be created in the root folder (i.e., the `Assignment_1` folder) and named `Assignment_1_result.png`.
 
-and the output image will be created in the root folder a.k.a Assignment_1 folder named "Assignment_1_result".
-
-![result of assignment 1](Assignment_1_result.png)
+## Result
+![Result of Assignment 1](Assignment_1_result.png)
