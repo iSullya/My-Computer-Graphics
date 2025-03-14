@@ -18,7 +18,9 @@ In this assignment, we added more depth and reality to the scene, moving from a 
 ## Results
 
 - Rendering with lighting and no specular
+
 ![Rendering with lighting and no specular](Assignment_2_result1.png) 
 
  - Rendering with both lighting and specular
+ 
 ![Rendering with both lighting and specular](Assignment_2_result_final.png)
