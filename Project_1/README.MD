@@ -20,7 +20,10 @@ In this project, we combine all the concepts introduced in previous assignments 
 ## Results
 
 - Randomized result #1
+
 ![Randomized result #1](Results/Project_1_result_final1.png) 
 
+
 - Randomized result #2
+
 ![Randomized result #2](Results/Project_1_result_final2.png)

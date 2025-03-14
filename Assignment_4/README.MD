@@ -19,13 +19,20 @@ In this assignment, we introduced supersampling, an anti-aliasing method that ma
 ## Results
 
 - Factor 4 supersampling (black background)
+
 ![Factor 4 supersampling (black background)](Results/Assignment_4_result_4by4.png)  
 
+
 - Factor 5 supersampling (black background, no jittering)
+
 ![Factor 5 supersampling (black background, no jittering)](Results/Assignment_4_result_5by5_woutJittering.png)  
 
+
 - Factor 5 supersampling (black background)
+
 ![Factor 5 supersampling (black background)](Results/Assignment_4_result_5by5.png)  
 
+
 - Factor 5 supersampling (white background)
+
 ![Factor 5 supersampling (white background)](Results/Assignment_4_result_whiteBackground.png)
