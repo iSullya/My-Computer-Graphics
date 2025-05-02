@@ -1,4 +1,4 @@
-# SULLY ENGINE
+# 3D GAME ENGINE
 
 A Java‐based 3D “Minecraft-like” engine built on LWJGL and JOML. It demonstrates loading OBJ models, multi‐textured terrain with blend maps, dynamic lighting, and a first‐person camera.
 
