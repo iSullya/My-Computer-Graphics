@@ -26,14 +26,19 @@ This repository contains assignments and projects completed as part of the **Com
 2. **[Project 2: Ray Tracing Using Shaders](Project_2/README.MD)**  
    GLSL Ray Tracing Shader.
 
+3. **[Project 3: Minecraf-like Game Engine Using Java](Project_3_gameEngine/README.md)**  
+   Game Enigne That Enables Blocks Placement and Removal.
+
+4. **[Project 4:Visual Bezier Curve Editor Using Java Swing](Project_4_curveEditor/README.md)**  
+   Application for Creating and Editing Bézier Curves With up to 10 Control Points.
 
 
 ## Languages Used
 
-- **Java:** 85.4%  
+- **Java:** 85.5%  
   Used for implementing core ray tracing logic and rendering pipelines in Assignment 1-4, and Project 1.
 
-- **GLSL:** 14.6%  
+- **GLSL:** 14.5%  
   Used for shader programming, lighting calculations, and visual effects in Project 2.
 
 
